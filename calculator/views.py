@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+import math
 
 class BMICalculatorView(APIView):
 	def post(self, request):
@@ -54,10 +55,28 @@ class BMICalculatorView(APIView):
 		else:
 			category = "Obesity"
 
+		#---Range---
+		if 	category == "Obesity" or "Overweight" or "Underweight":
+			if unit == 'metric':
+				#bmi =  weight / (height ** 2)
+				weight_1 = (height **2)*18.5
+				weight_2 = (height **2)*24.9
+			else:				
+				#bmi = 703 * (weight / (height **2))
+				weight_1 = ((height **2)*18.5) /703
+				weight_2 = ((height **2)*24.9) /703
+		weight_1 =  round(weight_1, 2)
+		weight_2 =  round(weight_2, 2)
+		w1 = str(weight_1)
+		w2 = str(weight_2) 		
+		healthy_weight_range = "between " + w1 +" and "+ w2
+
 		#---Response---	
 		response_data = {
 		'bmi': bmi,
-		'category': category
+		'category': category,
+		'healthy_weight_range': healthy_weight_range
+		#'healthy_weight_range' : f"{round(weight_1, 2)} - {round(weight_2, 2)}"
 		}
 		return Response(response_data, status=status.HTTP_200_OK)
 
