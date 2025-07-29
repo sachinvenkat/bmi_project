@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     #My Apps
     'calculator',
+    'quote_generator',
 ]
 
 MIDDLEWARE = [
