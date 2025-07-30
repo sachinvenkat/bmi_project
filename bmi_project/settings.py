@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     #My Apps
     'calculator',
     'quote_generator',
+    'converter',
 ]
 
 MIDDLEWARE = [

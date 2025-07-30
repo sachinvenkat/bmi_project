@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/bmi/', include('calculator.urls')),    
     path('api/v1/quote/', include('quote_generator.urls')),
+    path('api/v1/convert/temperature/', include('converter.urls') ),
 ]
